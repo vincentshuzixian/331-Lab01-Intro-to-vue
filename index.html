@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Intro SE331</title>
-    <!-- Import Styles -->
-    <link rel="stylesheet" href="./assets/styles.css" />
-    <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Show</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body>
     <div id="app">
-        <h1>Product goes here</h1>
+        <div class="nav-bar"></div>
+        <div class="cart">Cart ({{ cart.length }})</div>
+
+        <div v-for="id in uniqueCart" :key="id">
+            Product {{ id }}: {{ countInCart(id) }} times
+        </div>
+
+        <product-display 
+            :premium="premium" 
+            @add-to-cart="updateCart" 
+            @remove-from-cart="removeFromCart">
+        </product-display>
     </div>
 
-    <!-- Import Js -->
+    <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/ReviewForm.js"></script>
+    <script src="./components/ReviewList.js"></script>
     <script src="./main.js"></script>
 </body>
 
